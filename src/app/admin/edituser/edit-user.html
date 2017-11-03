@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+</head>
+
+<body>
+<div class="container panel panel-default" style="width:50%">
+        <form class="form-signin">
+            <h2 class="form-signin-heading panel-header container">Enter User ID</h2>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input type="email" id="inputEmail" name='username' [(ngModel)]="username" class="form-control" placeholder="Email address"
+                        required autofocus>
+                </div>
+                <button style="margin-bottom: 10px;" class="btn btn-lg btn-primary btn-block" (click)='onUserDetails()' type="submit">Get User Details</button>
+
+
+                <div class="form-group">
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" name='password' [(ngModel)]="password" class="form-control" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputAcc" class="sr-only">Account</label>
+                    <input type="text" name='account' [(ngModel)]="account" class="form-control" placeholder="account" required>
+                </div>
+                <div class="form-group">
+                    <label for="role" class="sr-only">Role</label>
+                    <select name='role' [(ngModel)]="role" class="form-control">
+                    <option value="admin" >Admin</option>
+                    <option value="user">User</option>
+                </select>
+                </div>
+                <div class="form-group">
+                    <label for="Manager" class="sr-only">Manger</label>
+                    <input type="text" name='manager' [(ngModel)]="manager" class="form-control" placeholder="Manager" required>
+                </div>
+                <div *ngIf="message" class='alert-danger' style="text-align: center;">{{message}}</div>
+                <button class="btn btn-lg btn-primary btn-block" (click)='onRegisterClick()' type="submit">Update User</button>
+            </div>
+        </form>
+
+    </div>
+    </body></html>

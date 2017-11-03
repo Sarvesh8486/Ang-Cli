@@ -1,0 +1,143 @@
+<div style=" margin:0 10px">
+
+    <!-- Search wf  -->
+    <div class="panel panel-default" style="margin:10px">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                Search Workflow
+            </h4>
+        </div>
+        <div class="panel-body tableMod ">
+            <input type="text" name="cloudSearch" [(ngModel)]='cloudSearch' class="form-control" placeholder="Enter Cloud Name" />
+        </div>
+    </div>
+
+    <!-- pop up window -->
+    <div *ngIf="showPopup">
+        <div class="custommodel modal fade" id="exampleModal" tabindex="-1" role="dialog" #modal>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Please Enter the following Parameters
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr *ngFor="let item of keys;let index = index;trackBy:trackByIndex;">
+                                <td><label>{{item}}{{index}}</label></td>
+                                <td><input type="text" [(ngModel)]="values[index]"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="done()">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- select wf  -->
+    <div class="panel panel-default" style=" margin:10px">
+        <div class="panel-heading">
+            <h4 class="panel-title"><label for="Cloud">Select Workflows</label></h4>
+            <div *ngIf='cloudSearch'>
+                Cloud Filtered By {{cloudSearch}}
+            </div>
+        </div>
+        <div class="panel-body tableMod">
+            <table class="table table-bordered tableMod1">
+                <tr>
+                    <th> </th>
+                    <th>Cloud</th>
+                    <th>Workflow</th>
+                    <th>Description</th>
+                    <th>Excel</th>
+                    <th>UCM Account</th>
+                    <th>Job Name</th>
+                    <th>Parameters</th>
+                </tr>
+
+                <tr *ngFor='let template of templates | cloudFilter: cloudSearch;let index = index;trackBy:trackByIndex;' [ngClass]="{'success': template.select , '': !template.select}">
+                    <td><input type="checkbox" value="{{template.select}}" name="selection{{index}}" id='select{{index}}' (change)='selectItem(index)' [(ngModel)]="templates[index].select"/></td>
+                    <td><label  for="abc" class="cld">{{template.cloud}}</label></td>
+                    <td><label for="abc" class="wf">{{template.wf}}</label></td>
+                    <td><label for="abc" class="desc">{{template.desc}}</label></td>
+                    <td>
+                        <input name="file{{index}}" type="text" hidden value="templates[index].excel" [(ngModel)]="templates[index].excel" class="desc" />
+                        <input name="fileupload{{index}}" type="file" ng2FileSelect [uploader]="uploader" class="ena exl" id='myFileInput{{index}}' accept=".zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed"/>
+                    </td>
+                    <td><input name="ucm{{index}}" type="text" class="ena ucm" [(ngModel)]="templates[index].ucm" placeholder="fin/prj/Project" /></td>
+                    <td><label for="abc">{{template.job}}</label></td>
+                    <td><button type="click" data-toggle="modal" data-target="#exampleModal" (click)="onParamClick(template)">Enter params</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- URL username password -->
+    <div class="row" style="margin:0 10px;">
+        <div class="panel panel-default col-lg-5">
+            <div class="panel-heading">
+                <h4 class="panel-title"><label for="Cloud">Enter Cloud Instance Details</label></h4>
+            </div>
+            <div class="panel-body tableMod">
+
+                <div class="form-group">
+                    <input type="text" name="username" class="form-control" [(ngModel)]='username' required placeholder="Enter Username">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" [(ngModel)]='password' required placeholder="Enter Password">
+                </div>
+
+                <div class="form-group">
+                    <input type="url" name="url" class="form-control" [(ngModel)]='url' required placeholder="Enter WSDL URL">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-1"></div>
+        <div class="panel panel-default col-lg-5">
+            <div class="panel-heading">
+                <h4 class="panel-title"><label for="Cloud">Schedule Job</label></h4>
+            </div>
+            <div class="panel-body tableMod">
+
+                <input type="radio" name="scheduling" (click)="setradio('no')" [(ngModel)]='scheduling' value="no"> No Scheduling <br/>
+                <input type="radio" name="scheduling" (click)="setradio('yes')" [(ngModel)]='scheduling' value="yes"> Scheduling
+                <div *ngIf='scheduling=="yes"' style="margin-left:30px">
+                    <input type="radio" name="way" (click)="setradio('yes1')"/>
+                    <span>
+                        Repeat 
+                        <select id="dayofexe" >
+                            <option [value]="Daily" selected="selected">Daily</option>
+                            <option [value]="Sunday">Sunday</option>
+                            <option [value]="Monday">Monday</option>
+                            <option [value]="Tuesday">Tuesday</option>
+                            <option [value]="Wednesday">Wednesday</option>
+                            <option [value]="Thursday">Thursday</option>
+                            <option [value]="Friday">Friday</option>
+                            <option [value]="Saturday">Saturday</option>
+                        </select>
+                        At
+                        <input id="timeofexe1" type="time" name="Time">
+                    </span><br/>
+                    <input type="radio" name="way" (click)="setradio('yes2')"/>
+                    <span>
+                        At 
+                        <input id="dateofexe" type="date" name="date"> 
+                        <input id="timeofexe" type="time" name="time">
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<button class="btn container" (click)='onClickChange()' style= "width: 50%;margin-left: 350px;margin-bottom: 40px;">
+    Start Execution
+</button>
+<!-- Submit -->
+<change-template [url]='url' [username]='username' [template]='templates' [password]='password'></change-template>

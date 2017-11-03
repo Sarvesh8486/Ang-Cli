@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Automated FBDI</title>
+    <meta charset="UTF-8">
+    <link href="prev-exe.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container" style="height:70px">
+            <ul class="nav navbar-nav">
+                <li style="text-align: center"><a class="navbar-brand" href="#">Automated<br/>FBDI</a></li>
+                <li><a class="navbar-link" href="#">Previous Execution</a></li>
+                <li><a class="navbar-link" href="#">Instances</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div style="margin-top: 80px" class="container">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-target="#collapseOne">Search Log File</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="collapse panel-body ">
+                <label for="Cloud">Cloud</label>
+                <input type="text" name="cloudSearch" class="form-control" placeholder="Enter Cloud Name" />
+
+                <label for="Cloud">Workflow</label>
+                <input type="text" name="workflowSearch" class="form-control" placeholder="Enter Workflow Name" />
+
+                <label for="Cloud">Execution Date</label>
+                <input type="Date" name="exeSearch" class="form-control" placeholder="Enter Execution Date" />
+
+            </div>
+        </div>
+
+</body>
+
+</html>

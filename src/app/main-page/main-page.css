@@ -1,0 +1,82 @@
+.dis{
+    border: 0 transparent;
+        width: 100%;
+    box-sizing: border-box;
+    margin: 0px;
+
+}
+
+tr{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    
+}
+
+.ena{
+    width: 50px;    
+}
+
+.cld{
+    width: 40px;
+}
+
+.wf{
+    width: 40px;
+}
+
+.desc{
+    width: 300px;
+}
+
+.job{
+    width: 80px;
+}
+
+.exl{
+    width: 130px;
+}
+
+.exl + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    display: inline-block;
+    cursor: pointer; 
+}
+
+.exl:focus + label{
+    	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+.inputfile + label:hover {
+    background-color: red;
+}
+
+.ucm{
+    width: 120px;
+}
+.param{
+    width: 120px;
+}
+
+.tableMod1{
+    background-color: white;
+}
+
+
+.widget{
+    float: right;
+    margin-top: 150px;
+    position: fixed;
+    right: 0px;
+    margin-right: 5px;
+    
+}
+
+.custommodel{
+    background-color: #F00;
+    position: relative;
+    left:120;
+    top:80;
+
+}

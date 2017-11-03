@@ -1,0 +1,43 @@
+<div class="container">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                Search Log File
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-body ">
+            <div class="form-group">
+                <label for="Cloud">Cloud</label>
+                <input type="text" name="cloudSearch" [(ngModel)]='cloudSrch' class="form-control" placeholder="Enter Cloud Name" />
+            </div>
+
+            <div class="form-group">
+                <label for="Cloud">Workflow</label>
+                <input type="text" name="workflowSearch" [(ngModel)]='wfSrch' class="form-control" placeholder="Enter Workflow Name" />
+            </div>
+
+            <div class="form-group">
+                <label for="Cloud">Execution Date</label>
+                <input type="Date" name="exeSearch" [(ngModel)]='dateSrch' class="form-control" placeholder="Enter Execution Date" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default panel-body">
+        <table class="table table-bordered">
+            <tr>
+                <th>Cloud</th>
+                <th>Workflow</th>
+                <th>Time Of Execution</th>
+                <th>Logs</th>
+            </tr>
+            <tr *ngFor="let log of logs | cloudlog:cloudSrch | wflog:wfSrch | datelog:dateSrch">
+                <td>{{log.cloud}}</td>
+                <td>{{log.workflow}}</td>
+                <td>{{log.exe | date: 'medium'}} </td>
+                <td><a href="{{log.url}}">Download Log</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
